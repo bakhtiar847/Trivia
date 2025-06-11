@@ -89,7 +89,7 @@
             <div class="score" id="score"></div>
             <div class="question" id="question"></div>
             <div class="answers" id="answers"></div>
-            <button class="next-btn" id="nextBtn" disabled>Next</button>
+            <button class="next-btn" id="nextBtn">Start</button>
             <div class="result" id="result"></div>
             <div id="subjectDisplay"></div>
 <div id="levelDisplay"></div>
@@ -374,6 +374,7 @@
         function showQuestion() {
             answered = false;
             nextBtn.disabled = true;
+            nextBtn.textContent = 'next'
             resultEl.textContent = '';
             const q = questions[currentQuestion];
 document.getElementById("subjectDisplay").innerText =
@@ -448,9 +449,6 @@ function shuffle(array) {
     }
 }
 shuffle(questions);
-        
-        // Start the game
-        showQuestion();
     </script>
 </body>
 </html>
