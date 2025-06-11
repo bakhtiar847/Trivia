@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trivia Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        .trivia-container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 32px 24px;
+        }
+        h1 {
+            text-align: center;
+            color: #2596be;
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        .answers {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .answer-btn {
+            padding: 12px 18px;
+            font-size: 1em;
+            border: 2px solid #eee;
+            background: #f7fafd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, border 0.2s;
+        }
+        .answer-btn.correct {
+            background: #c2f7c2;
+            border-color: #4caf50;
+        }
+        .answer-btn.wrong {
+            background: #ffd6d6;
+            border-color: #e74c3c;
+        }
+        .score, .result {
+            text-align: center;
+            margin: 20px 0 0 0;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .next-btn, .restart-btn {
+            display: block;
+            margin: 28px auto 0 auto;
+            padding: 12px 32px;
+            font-size: 1em;
+            background: #2596be;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .next-btn:disabled {
+            background: #b9e0ee;
+            cursor: default;
+        }
+        @media (max-width: 600px) {
+            .trivia-container {
+                padding: 16px 4vw;
+            }
+            h1 {
+                font-size: 1.4em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="trivia-container">
+        <h1>Trivia Game</h1>
+        <div id="game">
+            <div class="score" id="score"></div>
+            <div class="question" id="question"></div>
+            <div class="answers" id="answers"></div>
+            <button class="next-btn" id="nextBtn" disabled>Next</button>
+            <div class="result" id="result"></div>
+            <button class="restart-btn" id="restartBtn" style="display:none;">Restart</button>
+        </div>
+    </div>
+    <script>
+        // Example questions - you can add more!
+        const questions = [
+            {
+                question: "What is the capital of France?",
+                answers: ["Berlin", "Paris", "Madrid", "Rome"],
+                correct: 1
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                answers: ["Earth", "Saturn", "Mars", "Venus"],
+                correct: 2
+            },
+            {
+                question: "Which language is used for web apps?",
+                answers: ["Python", "JavaScript", "C++", "Java"],
+                correct: 1
+            },
+            {
+                question: "How many continents are there on Earth?",
+                answers: ["5", "6", "7", "8"],
+                correct: 2
+            },
+            {
+                question: "Who wrote 'Romeo and Juliet'?",
+                answers: ["William Shakespeare", "Charles Dickens", "Jane Austen", "Mark Twain"],
+                correct: 0
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let answered = false;
+
+        const questionEl = document.getElementById('question');
+        const answersEl = document.getElementById('answers');
+        const nextBtn = document.getElementById('nextBtn');
+        const scoreEl = document.getElementById('score');
+        const resultEl = document.getElementById('result');
+        const restartBtn = document.getElementById('restartBtn');
+
+        function showQuestion() {
+            answered = false;
+            nextBtn.disabled = true;
+            resultEl.textContent = '';
+            const q = questions[currentQuestion];
+            questionEl.textContent = q.question;
+            answersEl.innerHTML = '';
+            q.answers.forEach((answer, idx) => {
+                const btn = document.createElement('button');
+                btn.textContent = answer;
+                btn.className = 'answer-btn';
+                btn.onclick = () => selectAnswer(idx, btn);
+                answersEl.appendChild(btn);
+            });
+            scoreEl.textContent = `Question ${currentQuestion + 1} of ${questions.length} | Score: ${score}`;
+        }
+
+        function selectAnswer(idx, btn) {
+            if (answered) return;
+            answered = true;
+            const q = questions[currentQuestion];
+            const buttons = answersEl.querySelectorAll('.answer-btn');
+            buttons.forEach((b, i) => {
+                b.disabled = true;
+                if (i === q.correct) b.classList.add('correct');
+                else if (i === idx) b.classList.add('wrong');
+            });
+            if (idx === q.correct) {
+                score++;
+                resultEl.textContent = "Correct!";
+            } else {
+                resultEl.textContent = `Wrong! The correct answer was: "${q.answers[q.correct]}".`;
+            }
+            nextBtn.disabled = false;
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                showQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            questionEl.textContent = '';
+            answersEl.innerHTML = '';
+            nextBtn.style.display = 'none';
+            scoreEl.textContent = '';
+            resultEl.innerHTML = `<strong>Game Over!</strong><br/>Your Score: <b>${score}</b> / ${questions.length}`;
+            restartBtn.style.display = 'block';
+        }
+
+        function restartGame() {
+            currentQuestion = 0;
+            score = 0;
+            nextBtn.style.display = 'block';
+            restartBtn.style.display = 'none';
+            showQuestion();
+        }
+
+        nextBtn.addEventListener('click', nextQuestion);
+        restartBtn.addEventListener('click', restartGame);
+
+        // Start the game
+        showQuestion();
+    </script>
+</body>
+</html>
