@@ -91,6 +91,8 @@
             <div class="answers" id="answers"></div>
             <button class="next-btn" id="nextBtn" disabled>Next</button>
             <div class="result" id="result"></div>
+            <div id="subjectDisplay"></div>
+<div id="levelDisplay"></div>
             <button class="restart-btn" id="restartBtn" style="display:none;">Restart</button>
         </div>
     </div>
@@ -375,6 +377,10 @@
             nextBtn.disabled = true;
             resultEl.textContent = '';
             const q = questions[currentQuestion];
+document.getElementById("subjectDisplay").innerText =
+  "Subjects: " + q.subjects.join(", ");
+document.getElementById("levelDisplay").innerText =
+  "Level: " + q.level;
             questionEl.textContent = q.question;
             answersEl.innerHTML = '';
             q.answers.forEach((answer, idx) => {
