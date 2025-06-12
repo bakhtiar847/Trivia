@@ -87,7 +87,9 @@
         <h1>Trivia Game</h1>
         <div id="game">
             <div class="score" id="score"></div>
+            <div class="hints-used" id="hintsUsedDisplay" style="text-align:center; color:#888; margin-top:10px;"></div>
             <div class="question" id="question"></div>
+            <div id="hintContainer" style="text-align:center; margin:14px 0;"></div>
             <div class="answers" id="answers"></div>
             <button class="next-btn" id="nextBtn">Start</button>
             <div class="result" id="result"></div>
@@ -98,6 +100,9 @@
     </div>
     <script src="questions.js"></script>
     <script>
+        let hintsUsed = 0;
+const hintsUsedDisplay = document.getElementById('hintsUsedDisplay');
+const hintContainer = document.getElementById('hintContainer');
         let currentQuestion = -1;
         let score = 0;
         let answered = false;
@@ -114,6 +119,7 @@
             nextBtn.disabled = true;
             nextBtn.textContent = 'Next'
             resultEl.textContent = '';
+            hintContainer.innerHTML = ''; // Clear previous hint/hint button 
             const q = questions[currentQuestion];
 document.getElementById("subjectDisplay").innerText =
   "Subjects: " + (q.subject ? q.subject.join(", ") : "N/A");
@@ -128,6 +134,19 @@ document.getElementById("levelDisplay").innerText =
                 btn.onclick = () => selectAnswer(idx, btn);
                 answersEl.appendChild(btn);
             });
+            if (q.hint) {
+        const hintBtn = document.createElement('button');
+        hintBtn.textContent = 'Show Hint';
+        hintBtn.className = 'next-btn';
+        hintBtn.style.background = '#e6b800';
+        hintBtn.onclick = function() {
+            hintContainer.innerHTML = `<div style="margin-top:10px; color:#b88300;"><strong>Hint:</strong> ${q.hint}</div>`;
+            hintsUsed++;
+            updateHintsUsedDisplay();
+            hintBtn.style.display = 'none';
+        };
+        hintContainer.appendChild(hintBtn);
+    }
             scoreEl.textContent = `Question ${currentQuestion + 1} of ${questions.length} | Score: ${score}`;
         }
 
