@@ -374,13 +374,13 @@
         function showQuestion() {
             answered = false;
             nextBtn.disabled = true;
-            nextBtn.textContent = 'next'
+            nextBtn.textContent = 'Next'
             resultEl.textContent = '';
             const q = questions[currentQuestion];
 document.getElementById("subjectDisplay").innerText =
-  "Subjects: " + q.subject.join(", ");
+  "Subjects: " + (q.subject ? q.subject.join(", ") : "N/A");
 document.getElementById("levelDisplay").innerText =
-  "Level: " + q.level;
+  "Level: " + (typeof q.level !== "undefined" ? q.level : "N/A");
             questionEl.textContent = q.question;
             answersEl.innerHTML = '';
             q.answers.forEach((answer, idx) => {
@@ -431,7 +431,7 @@ document.getElementById("levelDisplay").innerText =
         }
 
         function restartGame() {
-            currentQuestion = 0;
+            currentQuestion = -1;
             score = 0;
             nextBtn.style.display = 'block';
             restartBtn.style.display = 'none';
