@@ -205,7 +205,15 @@ function shuffle(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-shuffle(questions);
+        try
+        {
+            shuffle(questions);
+        }
+        catch (var e)
+        {
+            alert(e);
+            page.refresh();
+        }
     </script>
 </body>
 </html>
