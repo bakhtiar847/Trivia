@@ -199,20 +199,19 @@ document.getElementById("levelDisplay").innerText =
         restartBtn.addEventListener('click', restartGame);
 
 // Shuffle questions using Fisher-Yates algorithm
-function shuffle(array) {
+function shuffle(const array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-        try
-        {
+        try {
             shuffle(questions);
-        }
-        catch (var e)
-        {
-            alert(e);
-            page.refresh();
+        } catch (var e) {
+            if (e != null  | undefined){
+               alert(e);
+               page.refresh();
+            }
         }
     </script>
 </body>
