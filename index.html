@@ -5,6 +5,26 @@
     <title>Trivia Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        #loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: #f2f2f2;
@@ -90,7 +110,7 @@
             <div class="hints-used" id="hintsUsedDisplay" style="text-align:center; color:#888; margin-top:10px;"></div>
             <div class="question" id="question"></div>
             <div id="hintContainer" style="text-align:center; margin:14px 0;"></div>
-            <div class="answers" id="answers"></div>
+            <div class="answers" id="answers"><div class="loader"></div></div>
             <button class="next-btn" id="nextBtn">Start</button>
             <div class="result" id="result"></div>
             <div id="subjectDisplay"></div>
@@ -207,6 +227,7 @@ function shuffle(const array) {
     }
 }
             shuffle(questions);
+            dicument.getElementById("answers").innerHTML = "";
      } catch (var e) {
             if (e != null  | undefined){
                alert(e);
