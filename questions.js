@@ -258,5 +258,26 @@ const questions = [
 {question: "Which company created the iPhone?", answers: ["Google","Apple","Samsung","Microsoft"], correct: 1, subject: ["technology"], level: 5, hint: "Its logo is an apple with a bite"},
 {question: "What is H2O commonly known as?", answers: ["Salt","Hydrogen Peroxide","Water","Sulfuric Acid"], correct: 2, subject: ["science","chemistry"], level: 0, hint: "It’s essential for life"},
 {question: "Which planet is known as the Red Planet?", answers: ["Venus","Mars","Jupiter","Saturn"], correct: 1, subject: ["science","astronomy"], level: 5, hint: "Its color comes from iron oxide on its surface"},
-{question: "Who painted the 'Mona Lisa'?", answers: ["Michelangelo","Leonardo da Vinci","Raphael","Donatello"], correct: 1, subject: ["art","history"], level: 10, hint: "He was also a pioneering inventor"}
+{question: "Who painted the 'Mona Lisa'?", answers: ["Michelangelo","Leonardo da Vinci","Raphael","Donatello"], correct: 1, subject: ["art","history"], level: 10, hint: "He was also a pioneering inventor"},
+{"question":"Which planet is known as the Red Planet?","answers":["Venus","Mars","Jupiter","Saturn"],"correct":1,"subject":["science","astronomy"],"level":5,"hint":"Its color comes from iron oxide on its surface"},
+{"question":"Who painted the 'Mona Lisa'?","answers":["Michelangelo","Leonardo da Vinci","Raphael","Donatello"],"correct":1,"subject":["art","history"],"level":10,"hint":"He was also a pioneering inventor"},
+{"question":"What is the longest river in the world?","answers":["Amazon River","Nile River","Yangtze River","Mississippi River"],"correct":0,"subject":["geography"],"level":5,"hint":"It flows through South America."},
+{"question":"Which element has the chemical symbol 'O'?","answers":["Oxygen","Osmium","Ozone","Opium"],"correct":0,"subject":["science","chemistry"],"level":3,"hint":"It's essential for respiration."},
+{"question":"Who was the first President of the United States?","answers":["Abraham Lincoln","George Washington","Thomas Jefferson","John Adams"],"correct":1,"subject":["history","politics"],"level":5,"hint":"He led the Continental Army during the American Revolution."},
+{"question":"Which animal is known as the 'King of the Jungle'?","answers":["Lion","Tiger","Elephant","Bear"],"correct":0,"subject":["zoology"],"level":3,"hint":"It has a mane and roars loudly."},
+{"question":"What is the capital of France?","answers":["Paris","Berlin","Rome","Madrid"],"correct":0,"subject":["geography","history"],"level":5,"hint":"It's also known as the 'City of Lights.'"},
+{"question":"What is the hardest natural substance on Earth?","answers":["Gold","Diamond","Iron","Platinum"],"correct":1,"subject":["science","geology"],"level":7,"hint":"It's often used in cutting tools."},
+{"question":"Which country is famous for its pyramids?","answers":["Egypt","Mexico","China","India"],"correct":0,"subject":["history","geography"],"level":5,"hint":"It's located in North Africa."},
+{"question":"What is the smallest prime number?","answers":["0","1","2","3"],"correct":2,"subject":["math"],"level":3,"hint":"It's the only even prime number."},
+{"question":"Which famous scientist developed the theory of relativity?","answers":["Isaac Newton","Galileo Galilei","Albert Einstein","Niels Bohr"],"correct":2,"subject":["science","physics"],"level":8,"hint":"He is also known for his equation E=mc^2."},
+{"question":"What is the largest continent by land area?","answers":["Africa","Asia","Europe","North America"],"correct":1,"subject":["geography"],"level":6,"hint":"It's home to over 4 billion people."},
+{"question":"In what year did the Titanic sink?","answers":["1900","1912","1920","1930"],"correct":1,"subject":["history"],"level":7,"hint":"It sank during its maiden voyage."},
+{"question":"Which bird is known for mimicking sounds and voices?","answers":["Parrot","Eagle","Owl","Penguin"],"correct":0,"subject":["zoology"],"level":4,"hint":"It's often kept as a pet for its talking ability."},
+{"question":"What does DNA stand for?","answers":["Deoxyribonucleic Acid","Deoxyribosomal Acid","Dioxyribonucleic Acid","Dinucleic Acid"],"correct":0,"subject":["science","biology"],"level":6,"hint":"It carries genetic information."},
+{"question":"What is the largest ocean on Earth?","answers":["Atlantic Ocean","Indian Ocean","Arctic Ocean","Pacific Ocean"],"correct":3,"subject":["geography"],"level":5,"hint":"It covers more than 30% of the Earth's surface."},
+{"question":"Which instrument is commonly used to measure temperature?","answers":["Barometer","Thermometer","Telescope","Microscope"],"correct":1,"subject":["science"],"level":4,"hint":"It has a scale marked in Celsius or Fahrenheit."},
+{"question":"Which famous wizard is the protagonist of a book series by J.K. Rowling?","answers":["Frodo Baggins","Harry Potter","Gandalf","Hermione Granger"],"correct":1,"subject":["literature"],"level":5,"hint":"He defeated the Dark Lord Voldemort."},
+{"question":"What is the largest desert on Earth?","answers":["Sahara","Gobi","Kalahari","Antarctic Desert"],"correct":3,"subject":["geography"],"level":7,"hint":"It is located in Antarctica."},
+{"question":"Who wrote the play 'Romeo and Juliet'?","answers":["Christopher Marlowe","William Shakespeare","John Milton","Geoffrey Chaucer"],"correct":1,"subject":["literature","theater"],"level":8,"hint":"He is widely regarded as one of the greatest playwrights in history."}
+
 ];
