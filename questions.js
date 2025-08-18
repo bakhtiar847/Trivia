@@ -247,7 +247,7 @@ const questions = [
 {question: "Who is the author of '1984'?", answers: ["Aldous Huxley","George Orwell","Ray Bradbury","J.R.R. Tolkien"], correct: 1, subject: ["literature"], level: 20, hint: "He also wrote 'Animal Farm'"},
 {question: "What chemical element has the symbol 'Au'?", answers: ["Silver","Gold","Argentum","Aurum"], correct: 1, subject: ["science","chemistry"], level: 10, hint: "It’s a precious metal used in jewelry and currency"},
 {question: "Which language is the third most spoken worldwide by native speakers?", answers: ["English","Spanish","Hindi","French"], correct: 2, subject: ["language","geography"], level: 30, hint: "It’s the most spoken language in India"},
-{question: "Which river flows through Paris?", answers: ["Thames","Seine","Danube","Rhine"], correct: 1, subject: ["geography"], level: 5, hint: "It shares its name with a famous bridge of books hoping to fall in love"],
+{question: "Which river flows through Paris?", answers: ["Thames","Seine","Danube","Rhine"], correct: 1, subject: ["geography"], level: 5, hint: "It shares its name with a famous bridge of books hoping to fall in love"},
 {question: "What year did the Berlin Wall fall?", answers: ["1987","1989","1991","1985"], correct: 1, subject: ["history","Europe"], level: 10, hint: "It marked the end of Cold War division in Germany"},
 {question: "Which gas do plants absorb during photosynthesis?", answers: ["Oxygen","Carbon Dioxide","Nitrogen","Hydrogen"], correct: 1, subject: ["science","biology"], level: 5, hint: "It’s a major greenhouse gas"},
 {question: "What is the capital of Australia?", answers: ["Sydney","Melbourne","Canberra","Perth"], correct: 2, subject: ["geography"], level: 10, hint: "It's not the largest Australian city"},
