@@ -190,12 +190,20 @@ document.getElementById("levelDisplay").innerText =
             nextBtn.disabled = false;
         }
 
+
         function nextQuestion() {
-            currentQuestion++;
-            if (currentQuestion < questions.length) {
+            if (currentQuestion === -1) {
+                // Start button clicked for the first time
+                currentQuestion = 0;
+                nextBtn.textContent = 'Next';
                 showQuestion();
             } else {
-                showResult();
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                } else {
+                    showResult();
+                }
             }
         }
 
@@ -220,18 +228,19 @@ document.getElementById("levelDisplay").innerText =
         restartBtn.addEventListener('click', restartGame);
 
 // Shuffle questions using Fisher-Yates algorithm
-async function shuffle(const array) {
+async function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
             shuffle(questions).then(function(value) {
-            document.getElementById("answers").innerHTML = "";})
-     } catch (var e) {
-            if (e != null  | undefined){
-               alert(e);
-               page.refresh();
+                document.getElementById("answers").innerHTML = "";
+            });
+        } catch (e) {
+            if (e != null && e !== undefined) {
+                alert(e);
+                page.refresh();
             }
         }
     </script>
