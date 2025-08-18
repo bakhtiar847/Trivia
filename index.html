@@ -120,8 +120,12 @@
     </div>
     <script src="questions.js"></script>
     <script>
-        try {
-        let hintsUsed = 0;
+            try {
+                // Get questions from questions.json
+                const response = await fetch('questions.json');
+                const qstr = await response.text();
+                const questions = JSON.parse(qstr);
+                let hintsUsed = 0;
 const hintsUsedDisplay = document.getElementById('hintsUsedDisplay');
 const hintContainer = document.getElementById('hintContainer');
         let currentQuestion = -1;

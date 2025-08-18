@@ -1,4 +1,4 @@
-const qstr = `[
+[
 	{
 		"question": "What is the capital of France?",
 		"answers": [
@@ -3700,5 +3700,4 @@ const qstr = `[
 		"level": 8,
 		"hint": "He is widely regarded as one of the greatest playwrights in history."
 	}
-]`;
-const questions = JSON.parse(qstr);
+]
