@@ -120,133 +120,137 @@
     </div>
     <script src="questions.js"></script>
     <script>
-            try {
-                // Get questions from questions.json
-                const response = fetch('questions.json');
-                const qstr = response.text();
-                const questions = JSON.parse(qstr);
-                let hintsUsed = 0;
-const hintsUsedDisplay = document.getElementById('hintsUsedDisplay');
-const hintContainer = document.getElementById('hintContainer');
-        let currentQuestion = -1;
-        let score = 0;
-        let answered = false;
+    (async function() {
+        try {
+            // Get questions from questions.json
+            const response = await fetch('questions.json');
+            const qstr = await response.text();
+            const questions = JSON.parse(qstr);
+            let hintsUsed = 0;
+            const hintsUsedDisplay = document.getElementById('hintsUsedDisplay');
+            const hintContainer = document.getElementById('hintContainer');
+            let currentQuestion = -1;
+            let score = 0;
+            let answered = false;
 
-        const questionEl = document.getElementById('question');
-        const answersEl = document.getElementById('answers');
-        const nextBtn = document.getElementById('nextBtn');
-        const scoreEl = document.getElementById('score');
-        const resultEl = document.getElementById('result');
-        const restartBtn = document.getElementById('restartBtn');
+            const questionEl = document.getElementById('question');
+            const answersEl = document.getElementById('answers');
+            const nextBtn = document.getElementById('nextBtn');
+            const scoreEl = document.getElementById('score');
+            const resultEl = document.getElementById('result');
+            const restartBtn = document.getElementById('restartBtn');
 
-        function showQuestion() {
-            answered = false;
-            nextBtn.disabled = true;
-            nextBtn.textContent = 'Next'
-            resultEl.textContent = '';
-            hintContainer.innerHTML = ''; // Clear previous hint/hint button 
-            const q = questions[currentQuestion];
-document.getElementById("subjectDisplay").innerText =
-  "Subjects: " + (q.subject ? q.subject.join(", ") : "N/A");
-document.getElementById("levelDisplay").innerText =
-  "Level: " + (typeof q.level !== "undefined" ? q.level : "N/A");
-            questionEl.textContent = q.question;
-            answersEl.innerHTML = '';
-            q.answers.forEach((answer, idx) => {
-                const btn = document.createElement('button');
-                btn.textContent = answer;
-                btn.className = 'answer-btn';
-                btn.onclick = () => selectAnswer(idx, btn);
-                answersEl.appendChild(btn);
-            });
-            if (q.hint) {
-        const hintBtn = document.createElement('button');
-        hintBtn.textContent = 'Show Hint';
-        hintBtn.className = 'next-btn';
-        hintBtn.style.background = '#e6b800';
-        hintBtn.onclick = function() {
-            hintContainer.innerHTML = `<div style="margin-top:10px; color:#b88300;"><strong>Hint:</strong> ${q.hint}</div>`;
-            hintsUsed++;
-            updateHintsUsedDisplay();
-            hintBtn.style.display = 'none';
-        };
-        hintContainer.appendChild(hintBtn);
-    }
-            scoreEl.textContent = `Question ${currentQuestion + 1} of ${questions.length} | Score: ${score}`;
-        }
-
-        function selectAnswer(idx, btn) {
-            if (answered) return;
-            answered = true;
-            const q = questions[currentQuestion];
-            const buttons = answersEl.querySelectorAll('.answer-btn');
-            buttons.forEach((b, i) => {
-                b.disabled = true;
-                if (i === q.correct) b.classList.add('correct');
-                else if (i === idx) b.classList.add('wrong');
-            });
-            if (idx === q.correct) {
-                score++;
-                resultEl.textContent = "Correct!";
-            } else {
-                resultEl.textContent = `Wrong! The correct answer was: "${q.answers[q.correct]}".`;
+            function updateHintsUsedDisplay() {
+                hintsUsedDisplay.textContent = `Hints used: ${hintsUsed}`;
             }
-            nextBtn.disabled = false;
-        }
 
-
-        function nextQuestion() {
-            if (currentQuestion === -1) {
-                // Start button clicked for the first time
-                currentQuestion = 0;
+            function showQuestion() {
+                answered = false;
+                nextBtn.disabled = true;
                 nextBtn.textContent = 'Next';
-                showQuestion();
-            } else {
-                currentQuestion++;
-                if (currentQuestion < questions.length) {
+                resultEl.textContent = '';
+                hintContainer.innerHTML = '';
+                const q = questions[currentQuestion];
+                document.getElementById("subjectDisplay").innerText =
+                    "Subjects: " + (q.subject ? q.subject.join(", ") : "N/A");
+                document.getElementById("levelDisplay").innerText =
+                    "Level: " + (typeof q.level !== "undefined" ? q.level : "N/A");
+                questionEl.textContent = q.question;
+                answersEl.innerHTML = '';
+                q.answers.forEach((answer, idx) => {
+                    const btn = document.createElement('button');
+                    btn.textContent = answer;
+                    btn.className = 'answer-btn';
+                    btn.onclick = () => selectAnswer(idx, btn);
+                    answersEl.appendChild(btn);
+                });
+                if (q.hint) {
+                    const hintBtn = document.createElement('button');
+                    hintBtn.textContent = 'Show Hint';
+                    hintBtn.className = 'next-btn';
+                    hintBtn.style.background = '#e6b800';
+                    hintBtn.onclick = function() {
+                        hintContainer.innerHTML = `<div style="margin-top:10px; color:#b88300;"><strong>Hint:</strong> ${q.hint}</div>`;
+                        hintsUsed++;
+                        updateHintsUsedDisplay();
+                        hintBtn.style.display = 'none';
+                    };
+                    hintContainer.appendChild(hintBtn);
+                }
+                scoreEl.textContent = `Question ${currentQuestion + 1} of ${questions.length} | Score: ${score}`;
+            }
+
+            function selectAnswer(idx, btn) {
+                if (answered) return;
+                answered = true;
+                const q = questions[currentQuestion];
+                const buttons = answersEl.querySelectorAll('.answer-btn');
+                buttons.forEach((b, i) => {
+                    b.disabled = true;
+                    if (i === q.correct) b.classList.add('correct');
+                    else if (i === idx) b.classList.add('wrong');
+                });
+                if (idx === q.correct) {
+                    score++;
+                    resultEl.textContent = "Correct!";
+                } else {
+                    resultEl.textContent = `Wrong! The correct answer was: "${q.answers[q.correct]}".`;
+                }
+                nextBtn.disabled = false;
+            }
+
+            function nextQuestion() {
+                if (currentQuestion === -1) {
+                    // Start button clicked for the first time
+                    currentQuestion = 0;
+                    nextBtn.textContent = 'Next';
                     showQuestion();
                 } else {
-                    showResult();
+                    currentQuestion++;
+                    if (currentQuestion < questions.length) {
+                        showQuestion();
+                    } else {
+                        showResult();
+                    }
                 }
             }
-        }
 
-        function showResult() {
-            questionEl.textContent = '';
-            answersEl.innerHTML = '';
-            nextBtn.style.display = 'none';
-            scoreEl.textContent = '';
-            resultEl.innerHTML = `<strong>Game Over!</strong><br/>Your Score: <b>${score}</b> / ${questions.length}`;
-            restartBtn.style.display = 'block';
-        }
+            function showResult() {
+                questionEl.textContent = '';
+                answersEl.innerHTML = '';
+                nextBtn.style.display = 'none';
+                scoreEl.textContent = '';
+                resultEl.innerHTML = `<strong>Game Over!</strong><br/>Your Score: <b>${score}</b> / ${questions.length}`;
+                restartBtn.style.display = 'block';
+            }
 
-        function restartGame() {
-            currentQuestion = -1;
-            score = 0;
-            nextBtn.style.display = 'block';
-            restartBtn.style.display = 'none';
-            showQuestion();
-        }
+            function restartGame() {
+                currentQuestion = -1;
+                score = 0;
+                nextBtn.style.display = 'block';
+                restartBtn.style.display = 'none';
+                showQuestion();
+            }
 
-        nextBtn.addEventListener('click', nextQuestion);
-        restartBtn.addEventListener('click', restartGame);
+            nextBtn.addEventListener('click', nextQuestion);
+            restartBtn.addEventListener('click', restartGame);
 
-// Shuffle questions using Fisher-Yates algorithm
-async function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-}
-            shuffle(questions).then(function(value) {
-                document.getElementById("answers").innerHTML = "";
-            });
+            // Shuffle questions using Fisher-Yates algorithm
+            async function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+            await shuffle(questions);
+            document.getElementById("answers").innerHTML = "";
         } catch (e) {
             if (e != null && e !== undefined) {
                 alert(e);
-                page.refresh();
+                window.location.reload(); // Reload the page on error
             }
         }
+    })();
     </script>
 </body>
 </html>
