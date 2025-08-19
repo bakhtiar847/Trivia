@@ -9,6 +9,17 @@
 		],
 		"correct": 1
 	},
+	 {
+    "question": "What is 3 × 3?",
+    "answers": ["6", "9", "12", "33"],
+    "correct": 1,
+    "explanations": [
+      "6 is the result of addition (3 + 3), not multiplication.",
+      "Correct! 3 × 3 = 9.",
+      "12 is 3 × 4, not 3 × 3.",
+      "33 is just the digits 3 and 3 together, not the product."
+    ]
+  },
 	{
 		"question": "Which planet is known as the Red Planet?",
 		"answers": [

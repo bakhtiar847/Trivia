@@ -195,7 +195,18 @@
                     resultEl.textContent = "Correct!";
                 } else {
                     resultEl.textContent = `Wrong! The correct answer was: "${q.answers[q.correct]}".`;
-                }
+                }// Show explanation for chosen answer
+    let explanation = q.explanations && q.explanations[idx]
+        ? q.explanations[idx]
+        : "";
+    if (idx === q.correct) {
+        score++;
+        resultEl.innerHTML = `<div>Correct!</div><div style="margin-top:6px;color:#2d7a2d;">${explanation}</div>`;
+    } else {
+        resultEl.innerHTML = `<div>Wrong! The correct answer was: "<b>${q.answers[q.correct]}</b>".</div>
+                              <div style="margin-top:6px;color:#b88300;">${explanation}</div>`;
+    }
+                updateHintsUsedDisplay();
                 nextBtn.disabled = false;
             }
 
