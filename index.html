@@ -170,12 +170,12 @@
                     hintBtn.className = 'next-btn';
                     hintBtn.style.background = '#e6b800';
                     hintBtn.onclick = function() {
-                        hintContainer.innerHTML = `<div style="margin-top:10px; color:#b88300;"><strong>Hint:</strong> ${q.hint}</div>`;
-                        hintsUsed++;
-                        updateHintsUsedDisplay();
-                        hintBtn.style.display = 'none';
-                    };
-                    hintContainer.appendChild(hintBtn);
+                    hintContainer.innerHTML = `<div style="margin-top:10px; color:#b88300;"><strong>Hint:</strong> ${q.hint}</div>`;
+                    hintsUsed++;
+                    updateHintsUsedDisplay();
+                    hintBtn.style.display = 'none';
+                };
+                hintContainer.appendChild(hintBtn);
                 }
                 scoreEl.textContent = `Question ${currentQuestion + 1} of ${questions.length} | Score: ${score}`;
             }
