@@ -122,8 +122,14 @@
     <script>
             try {
                 // Get questions from questions.json
-                const response = await fetch('questions.json');
-                const qstr = await response.text();
+                async function fetchQuestions() {
+                    const response = await fetch('questions.json');
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return await response.json();
+                }
+                const qstr = fetchQuestions().text();
                 const questions = JSON.parse(qstr);
                 let hintsUsed = 0;
 const hintsUsedDisplay = document.getElementById('hintsUsedDisplay');
