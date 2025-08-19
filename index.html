@@ -191,6 +191,9 @@
                     else if (i === idx) b.classList.add('wrong');
                 });
                 if (idx === q.correct) {
+                    if (q.level !== undefined && q.level != null) {
+                        score += q.level; // Add level points if defined
+                    }
                     score++;
                     resultEl.textContent = "Correct!";
                 } else {
