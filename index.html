@@ -191,11 +191,11 @@
                     else if (i === idx) b.classList.add('wrong');
                 });
                 if (idx === q.correct) {
+                    resultEl.textContent = "Correct!";
+        score++;
                     if (q.level !== undefined && q.level != null) {
                         score += q.level; // Add level points if defined
                     }
-                    score++;
-                    resultEl.textContent = "Correct!";
                 } else {
                     resultEl.textContent = `Wrong! The correct answer was: "${q.answers[q.correct]}".`;
                 }// Show explanation for chosen answer
@@ -203,7 +203,6 @@
         ? q.explanations[idx]
         : "";
     if (idx === q.correct) {
-        score++;
         resultEl.innerHTML = `<div>Correct!</div><div style="margin-top:6px;color:#2d7a2d;">${explanation}</div>`;
     } else {
         resultEl.innerHTML = `<div>Wrong! The correct answer was: "<b>${q.answers[q.correct]}</b>".</div>
